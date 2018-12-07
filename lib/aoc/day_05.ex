@@ -1,4 +1,6 @@
 defmodule Aoc.Day05 do
+  import Aoc
+
   @doc """
   --- Day 5: Alchemical Reduction ---
 
@@ -39,7 +41,7 @@ defmodule Aoc.Day05 do
   make sure you get the whole thing.)
   """
   def solve_part_01 do
-    load_input() |> react()
+    load_input(5) |> react()
   end
 
   @doc """
@@ -65,7 +67,7 @@ defmodule Aoc.Day05 do
   units of exactly one type and fully reacting the result?
   """
   def solve_part_02 do
-    load_input() |> smallest()
+    load_input(5) |> smallest()
   end
 
   @doc """
@@ -114,11 +116,4 @@ defmodule Aoc.Day05 do
     do: discard_and_react(rest, [let | acc], dis_a, dis_b)
 
   defp discard_and_react(<<>>, acc, _dis_a, _dis_b), do: acc |> Enum.reverse() |> List.to_string()
-
-  defp load_input do
-    :code.priv_dir(:aoc)
-    |> Path.join("day_05_input.txt")
-    |> File.read!()
-    |> String.trim()
-  end
 end
